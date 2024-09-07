@@ -2,7 +2,7 @@
 
 Create a GitHub page for the project
 
-“This is a line from RStudio”.
+“This is a line from RStudio”
 
 ## GitHub:
 #### 1. Create a GitHub account and Sign in
