@@ -1,0 +1,191 @@
+---
+title: "COX REGRESSION HAZARDS MODEL"
+format: html
+editor: visual
+---
+
+## SUMMARY OF ARTICLES
+
+--------------------------------------------------------------------
+
+### Article #1: “What is Cox’s proportional hazards model?” by Tibshirani R., 2022^1^
+
+The author discussed the basics of Cox proportional hazards model,  including mathematical foundation^1^. The Cox proportional hazards model is used for survival analysis, which estimates the time until a particular event occurs, including death or disease. The model investigates the association between survival time of patients and predictors.
+
+-   Outcome variable: the time until an even occurs.
+
+-   A patient’s survival time is censored if the patient survives, or event didn’t occur until the end of the study.
+
+-   For each subject there is time to event (T), i.e. the time at which event occur or censoring time (C), i.e the time the subject drops out of the study or the study ends.
+
+-   For each subject, either T or C is observed, whichever occur first. We observe the random variable Y=min(T,C).
+
+-   We also observe a status indicator 𝛿, with 𝛿 =1 if we observe the event and 𝛿=0 if we observe the censoring time.
+
+-   The dataset being analyzed consists of n(Y, 𝛿) for each subject in the study, denoted by (Y~1~, 𝛿~1~)… (Y~n~, 𝛿~n~).
+
+-   The Kaplan-Meier survival estimates the probability of survival from observed survival times.
+
+-   The Kaplan-Meier survival curve summarize the survival time based on calculated survival probability, e.g., median survival time.
+
+    -   Survival probability for each time point, t~1~\<t~2~\<t~3~...\<t~k~ is calculated based on the number of patients n~1~ who are still alive and the number who died at t~1~, i.e., d~1~. Survival probability = (n~1~ - d~1~)/ n~1~
+
+    -   The Kaplan–Meier survival curve computes the product of probabilities calculated for each time point
+
+    -   Median survival time is the time at which the survival probability is 0.5
+
+    -   The simple Kaplan-Meier survival analysis does not take into account covariates, while Cox regression allow assessing the effect of each predictor.
+
+-   Cox regression
+
+    -   Cox regression model is based on the hazard function *h(t\|x*), i.e., the probability that an individual with predictors x will die at time t, provided that the individual is alive prior to t.
+
+    -   The hazard for an individual is calculated by the formula: *h(t \| x) = h~0~(t)exp(x~i~β~i~).*
+
+        -   *h~0~(t) :* baseline hazard corresponding to x=0
+
+        -   x : predictor
+
+        -   β: the regression parameter
+
+-   Cox’s proportional hazards model allows computing parameter estimates (for each covariate), standard errors and confidence intervals.
+
+-   Cox regression allows modelling time-dependent covariates, where a patient characteristic is measured during each time point. The method can also handle high-dimensional data by incorporating sparsity penalties such as the lasso
+
+--------------------------------------------------------------------
+
+### Article #2**:** “Variables with time-varying effects and the Cox model: Some statistical concepts illustrated with a prognostic factor study in breast cancer” by Bellera et al., 2010.^2^
+
+The article discusses the importance of the proportional hazard assumption in the Cox proportional hazards model. The authors also describe methods to assess if this assumption is violated.
+
+-   The fundamental assumption of cox proportional hazard model is the proportionality of the hazards, implying that the factors investigated have a constant impact on the hazard - or risk - over time. The proportional hazard (PH) assumption is violated If variables that change over time are included without proper modeling.
+
+-   For single covariate, the hazard is: h~x~(t)=h~0~(t)exp(*βx);*
+
+    -   h~0~(t) = baseline hazard rate
+
+    -   *βx =* coefficient of the regression function
+
+-   The hazards for two subjects with covariate values x~1~ and x~2~ are given by by hx~1~(t) = h~0~(t) exp(βx~1~) and hx~2~(t) = h~0~(t) exp(βx~2~) respectively
+
+-   The hazard ratio is expressed as: HR = hx~2~(t)/ hx~1~(t) = exp\[β(x~2~- x~1~)\]
+
+-   Based on the assumption of proportional hazards, the hazard ratio HR is constant although the hazard rate hx(t) is allowed to vary over time.
+
+-   Different graphical strategies to assess proportionality assumption
+
+    -   1\) Kaplan-Meier Survival Distribution (S(t)): Plot (S(t) ) as a function of survival time for each level covariate. PH assumption is met if the curves should steadily drift apart.
+
+        -   Limitation: Kaplan-Meier plots become cluttered if categorical variables have multiple levels
+
+    -   2\) plot the function log(-log(S(t))) as a function of the log survival time (log represent natural log). Stratum-specific log-minus-log plots should be approximately parallel if assumption is met.
+
+        -   Limitation: Rarely perfectly parallel, less precise at longer times.
+
+-   Modeling approach to assess non-proportionality
+
+    -   Cox introduced a time-dependent variable by adding an interaction term between predictors and a function of survival time that is included in the model, then test the significance of this interaction term to assess non-proportionality. Covariates that are significant are not proportional.
+
+--------------------------------------------------------------------
+
+### Article #3: “Testing and interpreting assumptions of COX regression analysis” by Patil  and Dessai, 2019.^3^
+
+The article discusses assumptions underlying COX regression analysis, how to test them and their importance in ensuring validity of results.
+
+-   The two assumptions discussed in the article are random censoring and proportional hazard assumption.
+
+-   The random censoring assumption would be met if patients who are censored are random sample from the study population. There is no statistical test for this assumption, and it can be achieved by rigorous experimental design.
+
+-   The proportional hazard assumption states that the hazard function (hazard ratio) for two groups (e.g., experimental arm and standard arm) should remain proportional, i.e., hazard ratio is constant over time.
+
+    -   Hazard ratio represents the relative likelihood of an event happening in the experimental group with respect to the standard group.
+
+    -   Hazard ratio at time “t” = (Cumulative hazard rate at time “t” in the experimental arm) ÷ (Cumulative hazard rate at time “t” in the standard arm)
+
+    -   Cumulative hazard rate at time t is the integrated value
+
+    -   The proportional hazards assumption can be tested by three methods, Kaplan-Meier curves, log-minus-log plots and Schoenfeld Residuals.
+
+    -   In Kaplan-Meier curves, assumption is violated if there is a crossing of the Kaplan-Meier curves of the two groups or the curve of one of the groups drops down, while the other plateaus.
+
+    -   Schoenfeld Residuals plot can be generated in R and example codes are  provided in the article. The plot of Schoenfeld residuals against time should show a random scatter around zero if the proportional hazards assumption holds. A systematic pattern or trend indicates a violation of this assumption.
+
+--------------------------------------------------------------------
+
+### Article #4: “The Cox Proportional Hazards Model and Its Characteristics” by Kleinbaum DG, 1996.^4^
+
+In this book chapter, the author introduces the basic concepts of the Cox proportional hazards (PH) model, reasons for its popularity, and assumptions. Because the basic concepts and assumptions are summarized above, the following summary is only for Section III: Why is the Cox PH model popular.
+
+-   One of the properties of the Cox PH model is that the baseline hazard (h0) is an unspecified field, which makes it a semiparametric model.
+
+-   The Cox model is popular because it is robust and can provide reliable estimates without specifying the baseline hazard function.
+
+-   The Cox model is defined as the product of baseline hazards and exponential expressions of variables. The exponential product portion of the model will always provide hazard estimates that are non-negative. This property is appealing because the hazards ratio must range between 0 and infinity.
+
+-   Even though the baseline hazard is not known, it is possible to estimate the Bs in the exponential part of the equation. Hence, the effect of variables included in the model can be estimated.
+
+-   The Cox model is preferred over logistic regression when the outcome variable is time to event, and censoring is involved. The logistic model uses 0,1 outcome and ignores survival times and censoring.
+
+--------------------------------------------------------------------
+
+### Article #5: **“**Time-varying covariates and coefficients in Cox regression models” by Zhang et al., 2018.^5^
+
+The article discusses how to analyze time-varying covariates, i.e., variables that change over time during follow-up period, in Cox regression model.
+
+-   Time-varying covariates are classified as internal or external. Internal covariates are measured on the subject and can directly affect the failure process. External covariates develop independently of the subject’s survival or failure process, such as environmental factors.
+
+-   Time-varying covariates can be included in Cox regression by including a separate time-varying coefficient g.
+
+    -   General Cox PH model:
+
+        -   $\lambda$(t\|X) = $\lambda_0(t) \exp(\beta X)$
+
+        -   where $\lambda_0(t)$ is the baseline hazard function.
+
+        -   β =(β1, β2, ..., βp) is a vector of regression coefficients.
+
+        -   X is a vector of time-fixed covariates.
+
+    -   Cox PH model with time-varying covariates
+
+        -   $\lambda$(t\|X) = $\lambda_0(t) \exp(\beta X +\gamma Xg(t))$
+
+        -   where β and $\gamma$ are coefficients of time-fixed and time-varying covariate respectively. Xg(t) is time interaction function.
+
+--------------------------------------------------------------------
+
+### Article #6: **“**Survival analysis—part 2: Cox proportional hazards model” by Deo et al., 2021.^6^
+
+The authors provide an overview of the Cox proportional hazards model, including use of the log-rank test for comparing survival between two groups and its limitations.
+
+-   The log-rank test allows assessing the effect of a variable on the outcome, one variable at a time. It does not allow assessing the simultaneous impact of multiple variables at the same time.
+
+-   On the other hand, the Cox PH model allows investigating effects of several variables on survival while accounting for confounders.
+
+-   The article discusses Cox PH model assumption, and estimation of hazard ratio,  however, they are not summarized here because they have been included in summaries of other articles.
+
+-   Steps in survival analysis using the Cox PH model includes:
+
+    -   Create a null hypothesis, e.g., survival time S(*t*) for group 1 = S(*t*) for group 2
+
+    -   Generate survival estimates for group 1 and group 2: i.e., the observed survival for group 1 and group 2 in the study cohort.
+
+    -   Perform Log-rank test to investigate whether the survivor curves for the two groups are statistically different (*p* value).
+
+    -   Construct the Cox PH model
+
+    -   Test whether assumptions are met. Consider extension of Cox PH model if they not met.
+
+**REFERENCES**
+
+1.  Tibshirani R. What is Cox’s proportional hazards model? *Signif (Oxf)*. 2022;19(2):38-39.
+
+2.  Bellera CA, MacGrogan G, Debled M, de Lara CT, Brouste V, Mathoulin-Pélissier S. Variables with time-varying effects and the Cox model: some statistical concepts illustrated with a prognostic factor study in breast cancer. *BMC Med Res Methodol*. 2010;10(1):20.
+
+3.  Patil V, Dessai S. Testing and interpreting assumptions of COX regression analysis. *Cancer Res Stat Treat*. 2019;2(1):108.
+
+4.   Kleinbaum DG. The cox proportional hazards model and its characteristics. In: *Survival Analysis*. Springer New York; 1996:83-128.
+
+5.  Zhang Z, Reinikainen J, Adeleke KA, Pieterse ME, Groothuis-Oudshoorn CGM. Time-varying covariates and coefficients in Cox regression models. *Ann Transl Med*. 2018;6(7):121.
+
+6.  Deo SV, Deo V, Sundaram V. Survival analysis-part 2: Cox proportional hazards model. *Indian J Thorac Cardiovasc Surg*. 2021;37(2):229-233.
