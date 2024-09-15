@@ -2,13 +2,13 @@
 title: "COX REGRESSION HAZARDS MODEL"
 subtitle: "Articles summary"
 author: "Hermela Shimelis (hs112)"
-date: '`r Sys.Date()`'
+date: today
 format:
   html:
     code-fold: true
 course: Capstone Projects in Data Science
 bibliography: references.bib # file contains bibtex for references
-#always_allow_html: true # this allows to get PDF with HTML features
+always_allow_html: true # this allows to get PDF with HTML features
 self-contained: true
 execute: 
   warning: false
@@ -18,11 +18,10 @@ editor:
     wrap: 72
 ---
 
-html file: [cox_regression_articles_summary.html]{target="_blank"} 
 
-### Article #1: “What is Cox’s proportional hazards model?” by Tibshirani R., 20221
+### Article #1: “What is Cox’s proportional hazards model?” [@Tibshirani2022-ys]
 
-The author discussed the basics of Cox proportional hazards model,  including mathematical foundation1. The Cox proportional hazards model is used for survival analysis, which estimates the time until a particular event occurs, including death or disease. The model investigates the association between survival time of patients and predictors.
+The author discussed the basics of Cox proportional hazards model,  including mathematical foundation1. The Cox proportional hazards model is used for survival analysis, which estimates the time until a particular event occurs, including death or disease. The model investigates the association between survival time of patients and predictors [@Kleinbaum1996-ik].
 
 - Outcome variable: the time until an even occurs.
 
