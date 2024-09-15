@@ -19,9 +19,10 @@ editor:
 ---
 
 
-### Article #1: “What is Cox’s proportional hazards model?” [@Tibshirani2022-ys]
 
-The author discussed the basics of Cox proportional hazards model,  including mathematical foundation1. The Cox proportional hazards model is used for survival analysis, which estimates the time until a particular event occurs, including death or disease. The model investigates the association between survival time of patients and predictors [@Kleinbaum1996-ik].
+### Article #1: “What is Cox’s proportional hazards model?” [@Tibshirani2022-yr]
+
+The author discussed the basics of Cox proportional hazards model,  including mathematical foundation1. The Cox proportional hazards model is used for survival analysis, which estimates the time until a particular event occurs, including death or disease. The model investigates the association between survival time of patients and predictors [@Tibshirani2022-yr].
 
 - Outcome variable: the time until an even occurs.
 
@@ -64,7 +65,7 @@ The author discussed the basics of Cox proportional hazards model,  including m
 - Cox regression allows modelling time-dependent covariates, where a patient characteristic is measured during each time point. The method can also handle high-dimensional data by incorporating sparsity penalties such as the lasso
 
 
-### Article #2: “Variables with time-varying effects and the Cox model: Some statistical concepts illustrated with a prognostic factor study in breast cancer” by Bellera et al., 2010.2
+### Article #2: “Variables with time-varying effects and the Cox model: Some statistical concepts illustrated with a prognostic factor study in breast cancer” by Bellera et al., 2010.(2)
 
 The article discusses the importance of the proportional hazard assumption in the Cox proportional hazards model. The authors also describe methods to assess if this assumption is violated.
 
@@ -96,7 +97,7 @@ Modeling approach to assess non-proportionality
 
 - Cox introduced a time-dependent variable by adding an interaction term between predictors and a function of survival time that is included in the model, then test the significance of this interaction term to assess non-proportionality. Covariates that are significant are not proportional.
 
-### Article #3: “Testing and interpreting assumptions of COX regression analysis” by Patil  and Dessai, 2019.3
+### Article #3: “Testing and interpreting assumptions of COX regression analysis” by Patil  and Dessai, 2019.(3)
 
 The article discusses assumptions underlying COX regression analysis, how to test them and their importance in ensuring validity of results.
 
@@ -118,7 +119,7 @@ The article discusses assumptions underlying COX regression analysis, how to tes
 
 - Schoenfeld Residuals plot can be generated in R and example codes are  provided in the article. The plot of Schoenfeld residuals against time should show a random scatter around zero if the proportional hazards assumption holds. A systematic pattern or trend indicates a violation of this assumption.
 
-### Article #4: “The Cox Proportional Hazards Model and Its Characteristics” by Kleinbaum DG, 1996.4
+### Article #4: “The Cox Proportional Hazards Model and Its Characteristics” by Kleinbaum DG, 1996.(4)
 
 In this book chapter, the author introduces the basic concepts of the Cox proportional hazards (PH) model, reasons for its popularity, and assumptions. Because the basic concepts and assumptions are summarized above, the following summary is only for Section III: Why is the Cox PH model popular.
 
@@ -132,7 +133,7 @@ In this book chapter, the author introduces the basic concepts of the Cox propor
 
 - The Cox model is preferred over logistic regression when the outcome variable is time to event, and censoring is involved. The logistic model uses 0,1 outcome and ignores survival times and censoring.
 
-### Article #5: “Time-varying covariates and coefficients in Cox regression models” by Zhang et al., 2018.5
+### Article #5: “Time-varying covariates and coefficients in Cox regression models” by Zhang et al., 2018.(5)
 
 The article discusses how to analyze time-varying covariates, i.e., variables that change over time during follow-up period, in Cox regression model.
 
@@ -156,7 +157,7 @@ The article discusses how to analyze time-varying covariates, i.e., variables th
 
   where β and $\gamma$ are coefficients of time-fixed and time-varying covariate respectively. Xg(t) is time interaction function.
 
-### Article #6: “Survival analysis—part 2: Cox proportional hazards model” by Deo et al., 2021.6
+### Article #6: “Survival analysis—part 2: Cox proportional hazards model” by Deo et al., 2021.(6)
 
 The authors provide an overview of the Cox proportional hazards model, including use of the log-rank test for comparing survival between two groups and its limitations.
 
