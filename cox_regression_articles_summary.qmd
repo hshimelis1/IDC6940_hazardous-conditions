@@ -160,7 +160,7 @@ The authors provide an overview of the Cox proportional hazards model, including
 
 -   The log-rank test allows assessing the effect of a variable on the outcome, one variable at a time. It does not allow assessing the simultaneous impact of multiple variables at the same time.
 
--   On the other hand, the Cox PH model allows investigating effects of several variables on survival while accounting for confounders.
+-   On the other hand, the Cox PH model allows investigating effects of several variables on survival giwhile accounting for confounders.
 
 -   The article discusses Cox PH model assumption, and estimation of hazard ratio,  however, they are not summarized here because they have been included in summaries of other articles.
 

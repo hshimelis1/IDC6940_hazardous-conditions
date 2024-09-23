@@ -1,13 +1,17 @@
 ---
-title: "Present a great story for data science projects"
-subtitle: "This is a Slide Template"
-author: "Students names (Advisor: Dr. Cohen)"
-date: '`r Sys.Date()`'
+title: "Proportional Hazards Model slides "
+#subtitle: "This is a Slide Template"
+author: "Hermela Shimelis"
+date: last-modified
+date-format: long
 format:
-  revealjs
+  revealjs:
+    transition: fade
+    css: custom.css
 course: Capstone Projects in Data Science
 bibliography: references.bib # file contains bibtex for references
 #always_allow_html: true # this allows to get PDF with HTML features
+csl: ieee.csl
 self-contained: true
 execute: 
   warning: false
@@ -17,101 +21,100 @@ editor:
     wrap: 72
 ---
 
-::: callout-important
-**Remember:** Your goal is to make your audience understand and care
-about your findings. By crafting a compelling story, you can effectively
-communicate the value of your data science project.
-
-Carefully read this template since it has instructions and tips to
-writing!
-
-More information about `revealjs`:
-<https://quarto.org/docs/reference/formats/presentations/revealjs.html>
-:::
-
-## Introduction  {.smaller}
-
--   Develop a storyline that captures attention and maintains interest.
-
--   Your audience is your peers
-
--   Clearly state the problem or question you're addressing.
-
--   Introduce why it is relevant needs.
-
--   Provide an overview of your approach.
-
-In kernel estimator, weight function is known as kernel function
-[@efr2008]. Cite this paper [@bro2014principal]. The GEE [@wang2014].
-The PCA [@daffertshofer2004pca]\*
-
-## Methods
-
--   Detail the models or algorithms used.
-
--   Justify your choices based on the problem and data.
 
 
+## Cox Proportional Hazards Model {.smaller}
 
-## Data Exploration and Visualization
+-   The Cox proportional hazards model is used to estimate the time until a particular event occurs, including death or disease [@Tibshirani2022-yr] [@Bellera2010-fq].
 
--   Describe your data sources and collection process.
+-   Assesses the effect of covariates on the hazard or risk given by a hazard ratio
 
--   Present initial findings and insights through visualizations.
+-   Cox regression model is based on the hazard function $h_x(t)$ with covariates at time t given by: 
 
--   Highlight unexpected patterns or anomalies.
+$$h_x(t)=h_0(t)\exp(\beta_1x_1 +\beta_2x_2 + \dots + \beta_p x_n) $$
+$$h_x(t) = hazard \ function\ $$ 
+$$h_0(t) = Baseline \ hazard \ function\ $$
+$$\beta_1x_1 +\beta_2x_2 + \dots + \beta_p x_n = linear\ combination\ of \ covariates\ and\ their\ coefficients$$ 
 
-## Data Exploration and Visualization {.smaller}
+## Assumptions of Cox regression model
 
-A study was conducted to determine how...
+-   Proportionality of the hazards: the factors investigated have a constant impact on the hazard - or risk - over time [@Bellera2010-fq].
+
+- Graphical strategies to assess proportionality assumption
+
+  - Kaplan-Meier Survival Distribution $S(t)$: Plot $S(t)$ as a function of survival time for each level covariate.
+
+  - plot the function $log(-log(S(t)))$ as a function of the log survival time (log represent natural log).
+  
+  - Schoenfeld Residuals
+  
+- Consider using different approaches if assumption is not met
+
+## Survival data visualization
+
+-    E.g., Kaplan-Miers plot of the lung dataset in R
 
 ```{r, warning=FALSE, echo=F, message=FALSE}
-# loading packages 
-library(tidyverse)
-library(knitr)
-library(ggthemes)
-library(ggrepel)
-library(dslabs)
+# Load necessary libraries
+library(survival)
+library(survminer)
+
+# Load the lung dataset
+data(lung)
+
+# Fit a Kaplan-Meier survival curve
+fit <- survfit(Surv(time, status) ~ sex, data = lung)
+```
+
+
+```{r, warning=FALSE, echo=F}
+# Plot the Kaplan-Meier survival curves
+ggsurvplot(fit, data = lung, 
+           pval = TRUE, 
+           conf.int = TRUE, 
+           risk.table = TRUE, 
+           ggtheme = theme_minimal(), 
+           legend.title = "Sex",
+           legend.labs = c("Male", "Female"))
+
+# Display the plot
+#print(ggsurvplot)
+
+```
+
+
+
+
+## Hazard ratio from Cox regression model
+
+-    E.g., Hazard ratio of the lung dataset in R
+
+```{r, warning=FALSE, echo=F, message=FALSE}
+# Run the Cox proportional hazards model
+cox_model <- coxph(Surv(time, status) ~ age + sex + ph.ecog, data = lung)
+
+# Display the summary of the Cox model to get the coefficients and other details
+#summary(cox_model)
+
+# Get the exponentiated coefficients (hazard ratios) and their confidence intervals
+hazard_ratios <- exp(coef(cox_model))
+conf_int <- exp(confint(cox_model))
+
+# Create a data frame to display the hazard ratios and confidence intervals clearly
+hazard_ratios_df <- data.frame(
+  #Variable = names(hazard_ratios),
+  HazardRatio = round(hazard_ratios,2),
+  Lower95CI = round(conf_int[,1],2),
+  Upper95CI = round(conf_int[,2],2)
+)
+
+
 ```
 
 ```{r, warning=FALSE, echo=F}
-# Load Data
-#kable(head(murders))
-
-ggplot1 = murders %>% ggplot(mapping = aes(x=population/10^6, y=total)) 
-
-  ggplot1 + geom_point(aes(col=region), size = 4) +
-  geom_text_repel(aes(label=abb)) +
-  scale_x_log10() +
-  scale_y_log10() +
-  geom_smooth(formula = "y~x", method=lm,se = F)+
-  xlab("Populations in millions (log10 scale)") + 
-  ylab("Total number of murders (log10 scale)") +
-  ggtitle("US Gun Murders in 2010") +
-  scale_color_discrete(name = "Region")+
-      theme_bw()
-  
-
+library(knitr)
+kable(hazard_ratios_df)
 ```
-
-## Modeling and Results
-
--   Explain your data preprocessing and cleaning steps.
-
--   Present your key findings in a clear and concise manner.
-
--   Use visuals to support your claims.
-
--   **Tell a story about what the data reveals.**
-
-```{r}
-
-```
-
-## Conclusion
-
--   Summarize your key findings.
-
--   Discuss the implications of your results.
-
 ## References
+
+

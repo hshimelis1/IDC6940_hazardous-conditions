@@ -2,15 +2,13 @@
 title: "COX REGRESSION HAZARDS MODEL"
 subtitle: "Articles summary"
 author: "Hermela Shimelis (hs112)"
-date: today
+date: "09-08-2024"
 format:
   html:
     code-fold: true
-    css: custom.css
 course: Capstone Projects in Data Science
 bibliography: references.bib # file contains bibtex for references
-csl: ieee.csl
-always_allow_html: true # this allows to get PDF with HTML features
+#always_allow_html: true # this allows to get PDF with HTML features
 self-contained: true
 execute: 
   warning: false
@@ -21,10 +19,9 @@ editor:
 ---
 
 
+### Article #1: “What is Cox’s proportional hazards model?” by Tibshirani R., 2022 (1)
 
-### Article #1: “What is Cox’s proportional hazards model?” [@Tibshirani2022-yr]
-
-The author discussed the basics of Cox proportional hazards model, including mathematical foundation. The Cox proportional hazards model is used for survival analysis, which estimates the time until a particular event occurs, including death or disease. The model investigates the association between survival time of patients and predictors (Tibshirani 2022).
+The author discussed the basics of Cox proportional hazards model,  including mathematical foundation1. The Cox proportional hazards model is used for survival analysis, which estimates the time until a particular event occurs, including death or disease. The model investigates the association between survival time of patients and predictors.
 
 - Outcome variable: the time until an even occurs.
 
@@ -67,11 +64,11 @@ The author discussed the basics of Cox proportional hazards model, including mat
 - Cox regression allows modelling time-dependent covariates, where a patient characteristic is measured during each time point. The method can also handle high-dimensional data by incorporating sparsity penalties such as the lasso
 
 
-### Article #2: “Variables with time-varying effects and the Cox model: Some statistical concepts illustrated with a prognostic factor study in breast cancer” Bellera et al., 2010.
+### Article #2: “Variables with time-varying effects and the Cox model: Some statistical concepts illustrated with a prognostic factor study in breast cancer” by Bellera et al., 2010.(2)
 
 The article discusses the importance of the proportional hazard assumption in the Cox proportional hazards model. The authors also describe methods to assess if this assumption is violated.
 
-- The fundamental assumption of cox proportional hazard model is the proportionality of the hazards, implying that the factors investigated have a constant impact on the hazard - or risk - over time. The proportional hazard (PH) assumption is violated if variables that change over time are included without proper modeling.
+- The fundamental assumption of cox proportional hazard model is the proportionality of the hazards, implying that the factors investigated have a constant impact on the hazard - or risk - over time. The proportional hazard (PH) assumption is violated If variables that change over time are included without proper modeling.
 
 - For single covariate, the hazard is: hx(t)=h0(t)exp(βx);
 
@@ -79,7 +76,7 @@ The article discusses the importance of the proportional hazard assumption in th
 
   - βx = coefficient of the regression function
 
-- The hazards for two subjects with covariate values x1 and x2 are given by by hx1(t) = h0(t) exp(βx1) and hx2(t) = h0(t) exp(βx2) respectively
+-The hazards for two subjects with covariate values x1 and x2 are given by by hx1(t) = h0(t) exp(βx1) and hx2(t) = h0(t) exp(βx2) respectively
 
 - The hazard ratio is expressed as: HR = hx2(t)/ hx1(t) = exp[β(x2- x1)]
 
@@ -87,19 +84,19 @@ The article discusses the importance of the proportional hazard assumption in th
 
 - Different graphical strategies to assess proportionality assumption
 
-  -1) Kaplan-Meier Survival Distribution (S(t)): Plot (S(t) ) as a function of survival time for each level covariate. PH assumption is met if the curves should steadily drift apart.
+  - 1) Kaplan-Meier Survival Distribution (S(t)): Plot (S(t) ) as a function of survival time for each level covariate. PH assumption is met if the curves should steadily drift apart.
 
-    - Limitation: Kaplan-Meier plots become cluttered if categorical variables have multiple levels
+        - Limitation: Kaplan-Meier plots become cluttered if categorical variables have multiple levels
 
-  -2) plot the function log(-log(S(t))) as a function of the log survival time (log represent natural log). Stratum-specific log-minus-log plots should be approximately parallel if assumption is met.
+  - 2) plot the function log(-log(S(t))) as a function of the log survival time (log represent natural log). Stratum-specific log-minus-log plots should be approximately parallel if assumption is met.
 
-    - Limitation: Rarely perfectly parallel, less precise at longer times.
+        - Limitation: Rarely perfectly parallel, less precise at longer times.
 
 Modeling approach to assess non-proportionality
 
 - Cox introduced a time-dependent variable by adding an interaction term between predictors and a function of survival time that is included in the model, then test the significance of this interaction term to assess non-proportionality. Covariates that are significant are not proportional.
 
-### Article #3: “Testing and interpreting assumptions of COX regression analysis” Patil and Dessai, 2019
+### Article #3: “Testing and interpreting assumptions of COX regression analysis” by Patil  and Dessai, 2019.(3)
 
 The article discusses assumptions underlying COX regression analysis, how to test them and their importance in ensuring validity of results.
 
@@ -121,7 +118,7 @@ The article discusses assumptions underlying COX regression analysis, how to tes
 
 - Schoenfeld Residuals plot can be generated in R and example codes are  provided in the article. The plot of Schoenfeld residuals against time should show a random scatter around zero if the proportional hazards assumption holds. A systematic pattern or trend indicates a violation of this assumption.
 
-### Article #4: “The Cox Proportional Hazards Model and Its Characteristics” Kleinbaum DG, 1996.
+### Article #4: “The Cox Proportional Hazards Model and Its Characteristics” by Kleinbaum DG, 1996.(4)
 
 In this book chapter, the author introduces the basic concepts of the Cox proportional hazards (PH) model, reasons for its popularity, and assumptions. Because the basic concepts and assumptions are summarized above, the following summary is only for Section III: Why is the Cox PH model popular.
 
@@ -135,7 +132,7 @@ In this book chapter, the author introduces the basic concepts of the Cox propor
 
 - The Cox model is preferred over logistic regression when the outcome variable is time to event, and censoring is involved. The logistic model uses 0,1 outcome and ignores survival times and censoring.
 
-### Article #5: “Time-varying covariates and coefficients in Cox regression models” by Zhang et al., 2018.
+### Article #5: “Time-varying covariates and coefficients in Cox regression models” by Zhang et al., 2018.(5)
 
 The article discusses how to analyze time-varying covariates, i.e., variables that change over time during follow-up period, in Cox regression model.
 
@@ -159,7 +156,7 @@ The article discusses how to analyze time-varying covariates, i.e., variables th
 
   where β and $\gamma$ are coefficients of time-fixed and time-varying covariate respectively. Xg(t) is time interaction function.
 
-### Article #6: “Survival analysis—part 2: Cox proportional hazards model” Deo et al., 2021.
+### Article #6: “Survival analysis—part 2: Cox proportional hazards model” by Deo et al., 2021.(6)
 
 The authors provide an overview of the Cox proportional hazards model, including use of the log-rank test for comparing survival between two groups and its limitations.
 
@@ -175,7 +172,7 @@ The authors provide an overview of the Cox proportional hazards model, including
 
     - Generate survival estimates for group 1 and group 2: i.e., the observed survival for group 1 and group 2 in the study cohort.
 
-    - Perform Log-rank test to investigate whether the survival curves for the two groups are statistically different (p value).
+    - Perform Log-rank test to investigate whether the survivor curves for the two groups are statistically different (p value).
 
     - Construct the Cox PH model
 
