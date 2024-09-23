@@ -61,7 +61,7 @@ library(survminer)
 
 # Load the lung dataset
 data(lung)
-
+head(lung)
 # Fit a Kaplan-Meier survival curve
 fit <- survfit(Surv(time, status) ~ sex, data = lung)
 ```

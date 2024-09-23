@@ -19,12 +19,12 @@ execute:
 editor: 
   markdown: 
     wrap: 72
----s
+---
 
 ### Article #1: “What is Cox’s proportional hazards model?” [@Tibshirani2022-yr]
 
 
-The author discussed the basics of Cox proportional hazards model, including mathematical foundation. The Cox proportional hazards model is used for survival analysis, which estimates the time until a particular event occurs, including death or disease. The model investigates the association between survival time of patients and predictors (Tibshirani 2022).
+The author discussed the basics of Cox proportional hazards model, including mathematical foundation. The Cox proportional hazards model is used for survival analysis, which estimates the time until a particular event occurs, including death or disease. The model investigates the association between survival time of patients and predictors [@Tibshirani2022-yr].
 
 - Outcome variable: the time until an even occurs.
 
